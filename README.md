@@ -6,15 +6,21 @@ Before any hardware hacking, it is recommended to configure the device using the
 
 ## Hacking It for Local Use with Home Assistant
 
-While it is possible to integrate Tuya devices with Home Assistant via the cloud, I prefer a local integration. To achieve this, I replaced the CBLC5 firmware with **ESPHome**. In this case I was able to flash the new firmware by exploiting a vulnerability present in many (not all) of this Bk¡K72xxx devices, this can be done with a popular tool called [tuya-cloudcutter](https://github.com/tuya-cloudcutter/tuya-cloudcutter). This is a very interesting tool that not only allows to flash a new firmware via OTA (over-the-air protocol) but it also lets you extract the pin configuration of the device andgenerates a YAML compatible with ESPhome.
+While it is possible to integrate Tuya devices with Home Assistant via the cloud, I prefer a local integration. To achieve this, I replaced the CBLC5 firmware with **ESPHome**. In this case I was able to flash the new firmware by exploiting a vulnerability present in many (not all) of this BK72xxx devices, this can be done with a popular tool called [tuya-cloudcutter](https://github.com/tuya-cloudcutter/tuya-cloudcutter). This is a very clever tool that not only allows you to flash a new firmware via OTA (over-the-air protocol) but it also lets you extract the pin configuration of the device and generates a YAML compatible with ESPhome.
 
-Tuya-cloudcutter is run on a Raspberry Pi to flash an initial (kickstart) version of ESPhome, then you can use ltchiptool with its upk2esphome plugin to obtain the device configuration and generate the YAML for ESPhome, finally the ESPhome dashboard is used to generate the firmware and install it wirelessly (OTA) as usual.
+Tuya-cloudcutter is run on a Raspberry Pi to flash an initial (kickstart) version of ESPhome, then you can use **ltchiptool** with its **upk2esphome** plugin to obtain the device configuration and generate the YAML for ESPhome, finally the ESPhome dashboard is used to generate the firmware and install it wirelessly (OTA) as usual.
 
-## Installing tuya-cloudcutter
+## Installing tuya-cloudcutter & flashing the kickstart ESPhome
 
 Follow the instructions in the [official site](https://github.com/tuya-cloudcutter/tuya-cloudcutter/blob/main/HOST_SPECIFIC_INSTRUCTIONS.md). I even used a more recent version of RapiOS than the one suggested there and I had no problems.
 
-Once tuya-cloudcutter has installed the ESPhome kickstart, connect to its AP and configure the SSID and password for your WiFi network.
+Once tuya-cloudcutter has installed the ESPhome kickstart in the device, the Raspberry Pi is no longer needed, the next steps should be done from any computer connected to the local network.
+
+## Connecting the newly flashed device to the local network
+
+* The newly flashed device starts a WiFi AP (Access Point), use your phone to connect to it.
+
+* Using your phone browser, connect to 192.168.4.1 and configure the SSID and password for the local WiFi network. Restart the device and verify that it has successfully obtained and IP in the local network and it responds to ping.
 
 ## Obtaining the device configuration
 
@@ -25,7 +31,7 @@ sudo pip install ltchiptool
 sudo pip3 install upk2esphome
 ~~~
 
-Once the lamp is connected to your WiFi network (has obtained an IP and responds to ping), use ltchiptool to get the device configuration in YAML format:
+Use ltchiptool to get the device configuration in YAML format:
 
 ~~~
 ltchiptool plugin upk2esphome kickstart -o tuyargbw.yaml
