@@ -130,7 +130,7 @@ light:
     warm_white: output_warm
 ```
 
-3. Choose **Install**, then **Wirelessly**. In this step is important to include the "manual_ip" in the Wifi section of the YAML, otherwise the dashboard will not find the device.
+3. Choose **Install**, then **Wirelessly**. In this step it is important to include the "manual_ip" in the Wifi section of the YAML, otherwise the dashboard will not find the device.
 
 ### REFERENCES
 
