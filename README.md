@@ -1,6 +1,6 @@
 # Flashing ESPHome to a Beken/Tuya CBLC5-Powered RGBW lamp
 
-This WiFi lamp is powered by a Tuya/Beken CBLC5 module with a BK7231N MCU. It is sold in my country under the brand **Alic**, it has a GU10 socket, and is used with the **Tuya app** on Android. It has a group of five RGB LEDs, and another group of twelve white LEDs (six cold and six warm). The LEDs are controlled by a SM2235 chip which is connected to the BK7231N via the I2C bus. 
+This WiFi lamp is powered by a Tuya/Beken CBLC5 module with a BK7231N MCU. It is sold in my country under the brand **Alic**, model **SMW0510**, it has a GU10 socket, and is used with the **Tuya app** on Android. It has a group of five RGB LEDs, and another group of twelve white LEDs (six cold and six warm). The LEDs are controlled by a SM2235 chip which is connected to the BK7231N via the I2C bus. 
 
 Before any hardware hacking, it is recommended to configure the device using the Tuya app to ensure everything is functioning correctly.
 
